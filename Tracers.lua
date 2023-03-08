@@ -28,7 +28,7 @@ local function CreateTracer(player)
     Tracer.To = Vector2.new(0, 0)
     Tracer.Color = Config.Color
     Tracer.ZIndex = 1
-    Tracers[player] = {
+    Tracers[player.UserId] = {
         Tracer = Tracer,
         Position = Vector2.new(0, 0)
     }
@@ -43,8 +43,9 @@ local function UpdateTracers()
     end
 
     local anyPlayersVisible = false
-    for player, tracerData in pairs(Tracers) do
-        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+    for userId, tracerData in pairs(Tracers) do
+        local player = Players:GetPlayerByUserId(userId)
+        if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
             local StartPos, onScreen = Camera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position)
             if onScreen then
                 anyPlayersVisible = true
@@ -74,8 +75,8 @@ Players.PlayerAdded:Connect(function(player)
 end)
 
 Players.PlayerRemoving:Connect(function(player)
-    Tracers[player].Tracer:Remove()
-    Tracers[player] = nil
+    Tracers[player.UserId].Tracer:Remove()
+    Tracers[player.UserId] = nil
 end)
 
 for _, player in pairs(Players:GetPlayers()) do
