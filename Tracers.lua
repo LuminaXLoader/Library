@@ -2,14 +2,22 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
 
-local Tracers = {}
-
 local Config = {
     Enabled = false,
     Color = Color3.fromRGB(255, 255, 255),
     Thickness = 2,
     Transparency = 0.3,
 }
+
+local Tracers = {}
+
+function Tracers.SetConfig(key, value)
+    Config[key] = value
+end
+
+function Tracers.GetConfig()
+    return Config
+end
 
 local function CreateTracer(player)
     local Tracer = Drawing.new("Line")
@@ -77,3 +85,5 @@ end
 game:GetService("RunService").RenderStepped:Connect(function()
     UpdateTracers()
 end)
+
+return Tracers
