@@ -700,17 +700,17 @@ library.createSlider = function(option, parent)
     })
 
     option.title = library:Create("TextBox", {
-        Position = UDim2.new((option.sub or option.textpos) and 0.5 or 0, (option.sub or option.textpos) and 0 or 6, 0, 0),
+        Position = UDim2.new((option.sub or option.textpos) and 0.5 or 0, (option.sub or option.textpos) and 0 or 6, 0, 1),
         Size = UDim2.new(0, 0, 0, (option.sub or option.textpos) and 14 or 18),
         BackgroundTransparency = 1,
         Text = (option.text == "nil" and "" or option.text .. ": ") .. option.value .. option.suffix,
         TextSize = (option.sub or option.textpos) and 14 or 15,
         Font = Enum.Font.Code,
         TextColor3 = Color3.fromRGB(210, 210, 210),
-        TextXAlignment = Enum.TextXAlignment[(option.sub or option.textpos) and "Center" or "Left"],
+        TextXAlignment = Enum.TextXAlignment.Center,
         Parent = (option.sub or option.textpos) and option.slider or option.main
     })
-    table.insert(library.theme, option.fill)
+        table.insert(library.theme, option.fill)
 
     library:Create("UIGradient", {
         Color = ColorSequence.new({
