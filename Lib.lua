@@ -694,7 +694,7 @@ library.createSlider = function(option, parent)
     })
 
     option.title = library:Create("TextBox", {
-        Position = UDim2.new(0.5, 0, (option.sub or option.textpos) and 0 or 0.5, (option.sub or option.textpos) and 0 or -9),
+        Position = UDim2.new((option.sub or option.textpos) and 0.5 or 0, (option.sub or option.textpos) and 0 or 6, 0, 0),
         Size = UDim2.new(0, 0, 0, (option.sub or option.textpos) and 14 or 18),
         BackgroundTransparency = 1,
         Text = (option.text == "nil" and "" or option.text .. ": ") .. option.value .. option.suffix,
